@@ -1,0 +1,20 @@
+FROM ubuntu:20.04
+
+RUN apt update
+RUN apt upgrade
+RUN apt install -y python3.9
+RUN apt install -y python3-pip
+
+# pip install yfinance などはrequirements.txtで指定する
+COPY requirements.txt .
+RUN python3.9 -m pip install -r requirements.txt
+
+# 環境変数の設定
+ENV HOGE_HOGE=1234
+
+# ワーク用のディレクトリを設定できる
+# WORKDIR /var
+
+# container側へファイルをコピーして実行
+COPY alps_value.py .
+ENTRYPOINT [ "python3.9", "alps_value.py" ]
