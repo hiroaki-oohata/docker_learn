@@ -76,4 +76,15 @@ hiroaki@SURPRO-8:~/e/docker_learn$
 ```bash
 docker save alps:latest | gzip > alps_latest.tar.gz
 ```
+アーカイブを他のPC（WindowsPC）に保管して、他のPCでloadしてみる。  
+※windowsPC側にもdockerがインストールされている必要があります。  
+```bash
+docker load -i alps_latest.tar.gz
+```
+以下のようになればOK  
+<img src="./images/windows.png" width="50%">
 
+同じように実行すると同じ出力になります。  
+```bash
+docker run alps:latest
+```
